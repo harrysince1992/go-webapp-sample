@@ -12,15 +12,17 @@ pipeline{
             }
         }
 
-        stage('go install'){
+        stage('Test app'){
             steps{
-                sh 'go install github.com/ybkuroki/go-webapp-sample@latest'
+                sh 'go test ./... -v'
             }
         }
 
-        stage('run main app'){
+        stage('Build'){
             steps{
-                sh 'go run main.go'
+                sh 'go mod download'
+                sh 'go mod verify'
+                sh 'go build -o go-app'
             }
         }
     }
