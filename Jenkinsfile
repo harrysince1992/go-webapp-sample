@@ -40,7 +40,7 @@ pipeline{
             agent any
             steps {
                 withDockerRegistry([ credentialsId: "dockerhub-creds", url: "" ]) {
-                dockerImage.push("harrysince1992/go-webapp-sample:latest")
+                dockerImage.push()
                 }
             }
         }
