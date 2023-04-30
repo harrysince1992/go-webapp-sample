@@ -36,11 +36,5 @@ pipeline{
             }
         }
 
-        stage('push to docker hub'){
-            steps{
-                 echo "push image here"
-            }
-           
-        }
     }
 }
