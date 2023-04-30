@@ -35,5 +35,9 @@ pipeline{
                 sh 'docker build -t goapp-docker .'
             }
         }
+
+        stage('push to docker hub'){
+            echo "push image here"
+        }
     }
 }
