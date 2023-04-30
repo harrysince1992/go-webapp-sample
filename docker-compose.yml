@@ -1,0 +1,12 @@
+version: "3.4"
+
+services:
+  gowebapp:
+    image: harrysince1992/go-webapp-sample:latest
+    ports:
+      - 8081:8081
+    networks:
+      - goweb
+
+networks:
+  goweb:

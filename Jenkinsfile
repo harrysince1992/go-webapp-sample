@@ -58,8 +58,7 @@ pipeline{
 
         stage('Deploy webapp'){
             steps {
-                sh 'docker rm $(docker ps -a --format "{{.ID}}:{{Names}}" | grep -i "go-webapp-sample" | cut -d: -f1)'
-                sh 'docker run -d -p 8081:8081 --name go-webapp-sample harrysince1992/go-webapp-sample:latest'
+                sh 'docker-compose up -d'
                 sh 'App is up and running fine' 
             }
         }
