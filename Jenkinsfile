@@ -40,12 +40,14 @@ pipeline{
             }
         }
 
-        // stage('dockerhub login'){
-        //     agent any
-        //     steps {
-        //         sh 'echo $DOCKERHUB_CREDS | docker login -u harrysince1992 --password-stdin'
-        //     }
-        // }
+        stage('dockerhub login'){
+            agent any
+            steps {
+                withCredentials([string(credentialsId: 'dockerhub-passwd', variable: 'dockerpwd')]) {
+                    sh "docker login -u harrysince1992 -p ${dockerpwd}"
+                }
+            }
+        }
 
         stage('tag and push image'){
             steps {
