@@ -57,8 +57,9 @@ pipeline{
         }
 
         stage('Deploy webapp'){
+            agent any
             steps {
-                sh 'docker-compose up -d'
+                sh '/usr/bin/docker-compose up -d'
                 sh 'App is up and running fine' 
             }
         }
