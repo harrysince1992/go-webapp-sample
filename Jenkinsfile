@@ -37,7 +37,10 @@ pipeline{
         }
 
         stage('push to docker hub'){
-            echo "push image here"
+            steps{
+                 echo "push image here"
+            }
+           
         }
     }
 }
