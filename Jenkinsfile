@@ -1,10 +1,14 @@
 pipeline{
-    agent {
-        docker { image 'golang:latest' }
-    }
 
     stages{
         stage('code checkout'){
+            agent {
+                docker { 
+                    image 'golang:latest' 
+                    reuseNode true
+                }
+            }
+
             steps {
                 sh 'go version'
                 echo "Cloning git repo first..."
@@ -13,16 +17,20 @@ pipeline{
         }
 
         stage('Test app'){
+            agent {
+                docker { 
+                    image 'golang:latest' 
+                    reuseNode true
+                }
+            }
             steps{
                 sh 'go test ./... -v'
             }
         }
 
         stage('Build'){
+            agent any
             steps{
-                sh 'go mod download'
-                sh 'go mod verify'
-                sh 'go build -o go-app'
                 sh 'docker build -t goapp-docker .'
             }
         }
