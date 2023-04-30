@@ -40,12 +40,12 @@ pipeline{
             }
         }
 
-        stage('dockerhub login'){
-            agent any
-            steps {
-                sh 'echo $DOCKERHUB_CREDS | docker login -u harrysince1992 --password-stdin'
-            }
-        }
+        // stage('dockerhub login'){
+        //     agent any
+        //     steps {
+        //         sh 'echo $DOCKERHUB_CREDS | docker login -u harrysince1992 --password-stdin'
+        //     }
+        // }
 
         stage('tag and push image'){
             steps {
