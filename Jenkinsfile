@@ -1,6 +1,10 @@
 pipeline{
     agent any
 
+    environment {
+        DOCKERHUB_CREDS=credentials('dockerhub-creds')
+    }
+
     stages{
         stage('code checkout'){
             agent {
@@ -32,16 +36,21 @@ pipeline{
         stage('Build'){
             agent any
             steps{
-                dockerImage = docker.build("harrysince1992/go-webapp-sample:latest")
+                sh 'docker build -t go-webapp-docker .'
             }
         }
 
-        stage('Push to docker hub'){
+        stage('dockerhub login'){
             agent any
             steps {
-                withDockerRegistry([ credentialsId: "dockerhub-creds", url: "" ]) {
-                dockerImage.push()
-                }
+                sh 'echo $DOCKERHUB_CREDS | docker login -u harrysince1992 --password-stdin'
+            }
+        }
+
+        stage('tag and push image'){
+            steps {
+                sh 'docker tag go-webapp-docker:latest harrysince1992/go-webapp-sample:latest'
+                sh 'docker push harrysince1992/go-webapp-sample:latest'
             }
         }
 
