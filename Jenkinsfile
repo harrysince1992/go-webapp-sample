@@ -1,6 +1,6 @@
 pipeline{
     agent {
-        image 'golang:latest'
+        docker { image 'golang:latest' }
     }
 
     stages{
