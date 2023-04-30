@@ -56,5 +56,12 @@ pipeline{
             }
         }
 
+        stage('Deploy webapp'){
+            steps {
+                sh 'docker run -d -p 8080:8080 --name go-webapp-sample harrysince1992/go-webapp-sample:latest'
+                sh 'App is up and running fine' 
+            }
+        }
+
     }
 }
