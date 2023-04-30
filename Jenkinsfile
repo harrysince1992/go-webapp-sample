@@ -59,7 +59,7 @@ pipeline{
         stage('Deploy webapp'){
             agent any
             steps {
-                sh '/usr/bin/docker-compose up -d'
+                sh 'docker run -p 8081:8081 -d --rm harrysince1992/go-webapp-sample:latest'
                 sh 'App is up and running fine' 
             }
         }
