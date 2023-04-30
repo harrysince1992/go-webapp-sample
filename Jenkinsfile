@@ -36,5 +36,15 @@ pipeline{
             }
         }
 
+        stage('Push to docker hub'){
+            agent any
+            steps {
+                sh 'docker tag goapp-docker:latest harrysince1992/go-webapp-sample:latest'
+                withDockerRegistry([ credentialsId: "dockerhub-creds", url: "" ]) {
+                dockerImage.push("harrysince1992/go-webapp-sample:latest")
+                }
+            }
+        }
+
     }
 }
