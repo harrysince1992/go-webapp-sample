@@ -23,6 +23,7 @@ pipeline{
                 sh 'go mod download'
                 sh 'go mod verify'
                 sh 'go build -o go-app'
+                sh 'docker build -t goapp-docker .'
             }
         }
     }
