@@ -60,7 +60,7 @@ pipeline{
             agent any
             steps {
                 sh 'docker run -p 8081:8081 -d --rm harrysince1992/go-webapp-sample:latest'
-                sh 'App is up and running fine' 
+                echo 'App is up and running fine' 
             }
         }
 
