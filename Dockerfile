@@ -3,7 +3,7 @@ WORKDIR /app
 COPY go.mod .
 RUN go mod download
 COPY . .
-RUN go build main.go
+RUN go build main.go -o go-webapp-sample
 
 FROM ubuntu:latest
 WORKDIR /root/
